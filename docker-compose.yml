@@ -36,8 +36,6 @@ services:
       - server
     networks:
       - app-network
-    ports:
-      - "80:80"
 
 networks:
   app-network:
