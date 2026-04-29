@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Journal {
+  id           String      @id @default(cuid())
+  name         String
+  publisher    String
+  frequency    String
+  impactFactor Float?
+  domain       String
+  issn         String?
+  description  String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  quotations   Quotation[] @relation("QuotationJournals")
+}
+
+model Quotation {
+  id              String   @id @default(cuid())
+  institutionName String
+  contactPerson   String
+  email           String
+  phone           String
+  notes           String?
+  adminNotes      String?
+  status          String   @default("Pending")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  selectedJournals Journal[] @relation("QuotationJournals")
+}

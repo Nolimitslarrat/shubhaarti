@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #05050A;
+  --color-surface: #0e0e16;
+  --color-primary: #7c3aed;
+  --color-primaryHover: #6d28d9;
+  --color-secondary: #0ea5e9;
+  --color-textMain: #f8fafc;
+  --color-textMuted: #94a3b8;
+  --font-sans: "Inter", "system-ui", sans-serif;
+  
+  --animate-blob: blob 7s infinite;
+}
+
+body {
+  @apply bg-background text-textMain font-sans antialiased selection:bg-primary/30;
+  background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #05050A 40%);
+  background-attachment: fixed;
+}
+
+.glass-panel {
+  @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-2xl;
+}
+
+.glass-card {
+  @apply bg-white/[0.02] backdrop-blur-lg border border-white/[0.05] shadow-xl hover:border-primary/50 transition-all duration-300;
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
