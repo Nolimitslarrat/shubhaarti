@@ -1,7 +1,9 @@
-# Build Stage
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
+
+# Ensure ESBuild compatibility on Alpine
+RUN apk add --no-cache libc6-compat
 
 # Force development mode for install to ensure Vite and plugins are downloaded
 ENV NODE_ENV=development
