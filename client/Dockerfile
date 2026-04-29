@@ -3,8 +3,11 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# Force development mode for install to ensure Vite and plugins are downloaded
+ENV NODE_ENV=development
+
 COPY package*.json ./
-RUN npm install
+RUN npm install --include=dev
 
 COPY . .
 RUN npm run build
